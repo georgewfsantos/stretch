@@ -2,7 +2,7 @@ import React from "react";
 
 import { Container } from "./styles";
 
-const ExperienceBar: React.FC = () => {
+function ExperienceBar() {
   return (
     <Container>
       <div className="bar-content">
@@ -15,6 +15,6 @@ const ExperienceBar: React.FC = () => {
       </div>
     </Container>
   );
-};
+}
 
 export default ExperienceBar;
