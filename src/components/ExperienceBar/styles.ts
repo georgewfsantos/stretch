@@ -27,7 +27,6 @@ export const Container = styled.div`
       }
 
       .experience-level {
-        left: 50%;
         position: absolute;
         top: 12px;
         transform: translateX(-50%);
