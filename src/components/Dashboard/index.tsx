@@ -1,6 +1,7 @@
 import Profile from "../Profile";
 import CompletedChallenges from "../CompletedChallenges";
 import CountDown from "../CountDown";
+import ChallengeBox from "../ChallengeBox";
 
 import { Container } from "./styles";
 
@@ -13,7 +14,7 @@ function Dashboard() {
         <CountDown />
       </div>
 
-      <div className="right"></div>
+      <ChallengeBox />
     </Container>
   );
 }

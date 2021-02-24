@@ -1,27 +1,39 @@
 import { useState, useEffect } from "react";
 import { Container } from "./styles";
 
+let countdownTimeout: NodeJS.Timeout;
+
 function CountDown() {
   const [time, setTime] = useState(25 * 60);
-  const [active, setActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [hasFinished, setHasFinished] = useState(false);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-  const [minuteLeft, minuteRight] = String(minutes).padStart(2, 0).split("");
-  const [secondLeft, secondRight] = String(seconds).padStart(2, 0).split("");
+  const [minuteLeft, minuteRight] = String(minutes).padStart(2, "0").split("");
+  const [secondLeft, secondRight] = String(seconds).padStart(2, "0").split("");
 
   const startCountDown = () => {
-    setActive(true);
+    setIsActive(true);
+  };
+
+  const resetCountDown = () => {
+    clearTimeout(countdownTimeout);
+    setIsActive(false);
+    setTime(25 * 60);
   };
 
   useEffect(() => {
-    if (active && active > 0) {
-      setTimeout(() => {
+    if (isActive && time > 0) {
+      countdownTimeout = setTimeout(() => {
         setTime(time - 1);
       }, 1000);
+    } else if (isActive && time === 0) {
+      setHasFinished(true);
+      setIsActive(false);
     }
-  }, [active, time]);
+  }, [isActive, time]);
 
   return (
     <Container>
@@ -37,9 +49,28 @@ function CountDown() {
           <span>{secondRight}</span>
         </div>
       </div>
-      <button type="button" onClick={startCountDown}>
-        Iniciar um ciclo
-      </button>
+
+      {hasFinished ? (
+        <button disabled className="finished-cycle">
+          Ciclo encerrado
+        </button>
+      ) : (
+        <>
+          {isActive ? (
+            <button
+              type="button"
+              onClick={resetCountDown}
+              className="reset-button"
+            >
+              Abandonar ciclo
+            </button>
+          ) : (
+            <button type="button" onClick={startCountDown}>
+              Iniciar um ciclo
+            </button>
+          )}
+        </>
+      )}
     </Container>
   );
 }

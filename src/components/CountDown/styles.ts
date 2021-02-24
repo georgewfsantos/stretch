@@ -41,6 +41,21 @@ export const Container = styled.div`
     }
   }
 
+  .finished-cycle {
+    cursor: not-allowed;
+  }
+
+  .stop-button,
+  .finished-cycle {
+    color: #434343;
+    background: var(--white);
+
+    &:not(:disabled):hover {
+      background-color: var(--blue);
+      color: var(--white);
+    }
+  }
+
   button {
     display: flex;
     align-items: center;
@@ -57,7 +72,7 @@ export const Container = styled.div`
     font-weight: 600;
     transition: background-color 0.2s;
 
-    &:hover {
+    &:not(:disabled):hover {
       background: var(--blue-dark);
     }
   }
