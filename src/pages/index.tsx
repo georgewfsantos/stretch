@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import Dashboard from "../components/Dashboard";
 import { Container } from "./homeStyles";
+import { CountDownProvider } from "../contexts/CountDownContext";
 
 export default function Home() {
   return (
@@ -10,8 +11,10 @@ export default function Home() {
       <Head>
         <title>Início | stretch</title>
       </Head>
-      <ExperienceBar />
-      <Dashboard />
+      <CountDownProvider>
+        <ExperienceBar />
+        <Dashboard />
+      </CountDownProvider>
     </Container>
   );
 }

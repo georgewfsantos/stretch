@@ -20,7 +20,6 @@ export const Container = styled.div`
       border-radius: 4px;
 
       .progress {
-        width: 50%;
         background: var(--green);
         height: 4px;
         border-radius: 4px;
